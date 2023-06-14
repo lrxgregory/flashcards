@@ -1,0 +1,53 @@
+.flashcard-group {
+    display: grid;
+    grid-template-columns: repeat(5, 0fr);
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.flashcard-group.answer{
+    direction: rtl;
+}
+
+.flashcard {
+    width: 150px;
+    height: 99.7px;
+    background-color: #fff;
+    border: 1px solid #ccc;     
+    padding: 10px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@page {
+    size: A4;
+    margin: 0;
+    padding: 0;
+}
+
+.flashcard-group {
+    page-break-after: always;
+}
+
+.flashcard.answer {
+    display: block;
+}
+
+@media print {
+    /* CSS pour afficher les réponses sur la deuxième page lors de l'impression */
+    .flashcard.answer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+body {
+    margin:0;
+}
