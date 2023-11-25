@@ -54,8 +54,18 @@ function toggleTheme() {
 function setDarkTheme() {
   document.body.classList.add("dark");
   if (window.location.pathname === "/") {
-    document.querySelector("body > form").classList.add("dark");
-    document.querySelector("body > form > h2").classList.add("dark");
+    document.querySelector("body > .panel").classList.add("dark");
+    document.querySelector("body > .panel > form").classList.add("dark");
+    document.querySelector("body > .panel > form > h2").classList.add("dark");
+    document
+      .querySelector("body > .panel.printParameters")
+      .classList.add("dark");
+    document
+      .querySelector("body > .panel.printParameters > h2")
+      .classList.add("dark");
+    document
+      .querySelector("body > .panel.printParameters > #switch")
+      .classList.add("dark");
   }
   document.querySelector("#sun").style.display = "none";
   document.querySelector("#moon").style.display = "block";
@@ -65,8 +75,20 @@ function setDarkTheme() {
 function setLightTheme() {
   document.body.classList.remove("dark");
   if (window.location.pathname === "/") {
-    document.querySelector("body > form").classList.remove("dark");
-    document.querySelector("body > form > h2").classList.remove("dark");
+    document.querySelector("body > .panel").classList.remove("dark");
+    document.querySelector("body > .panel > form").classList.remove("dark");
+    document
+      .querySelector("body > .panel.printParameters")
+      .classList.remove("dark");
+    document
+      .querySelector("body > .panel > form > h2")
+      .classList.remove("dark");
+    document
+      .querySelector("body > .panel.printParameters > h2")
+      .classList.remove("dark");
+    document
+      .querySelector("body > .panel.printParameters > #switch")
+      .classList.remove("dark");
   }
   document.querySelector("#moon").style.display = "none";
   document.querySelector("#sun").style.display = "block";
