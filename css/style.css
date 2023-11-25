@@ -1,0 +1,245 @@
+:root {
+    --buttonColor: #6366f2;
+    --buttonColorHover: rgb(103, 126, 255);
+    --bodyDark: #0f172a;
+    --formDark: #1e293b;
+    --textDark: #fff;
+}
+
+.flashcard-group {
+    display: grid;
+    grid-template-columns: repeat(5, 0fr);
+    max-width: 861px;
+    margin: 0 auto;
+    margin-bottom: 2%;
+}
+    
+.flashcard {
+    width: 150px;
+    height: 99.5px;
+    background-color: #fff;
+    border: 1px solid #ccc;     
+    padding: 10px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@page {
+    size: A4;
+    margin: 0;
+    padding: 0;
+}
+
+.flashcard-group {
+    page-break-after: always;
+}
+
+.flashcard.answer {
+    display: block;
+}
+
+@media print {
+    /* CSS pour afficher les réponses sur la deuxième page lors de l'impression */
+    .flashcard.answer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+    }
+}
+
+/* Form */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin:0;
+}
+
+div.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.panel {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 2% auto;
+}
+
+h2,  {
+    color: #333;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+label#labelUpload {
+    background-color: var(--buttonColor);
+    color: #fff;
+    padding: 10px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block;
+    margin-right: 2%
+}
+
+label#labelUpload:hover {
+    background-color: var(--buttonColorHover);
+}
+
+input[type="submit"] {
+    background-color: var(--buttonColor);
+    color: #fff;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+button  {
+    background-color: var(--buttonColor);
+    color: #fff;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+input[type="submit"]:hover {
+    background-color: var(--buttonColorHover);
+}
+
+/* Print button */
+
+.print-button {
+    background-color: var(--buttonColor);
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 1% 0;
+    font-size: 16px;
+}
+
+.print-button:hover {
+    background-color: var(--buttonColorHover);
+}
+
+@media print {
+    .print-button, span#themeToggle {
+        display: none;
+    }
+}
+
+body.dark {
+    background-color: var(--bodyDark)
+}
+
+.panel.dark, .panel.printParameters.dark, form.dark {
+    background-color: var(--formDark)
+}
+
+h2.dark, #switch.dark {
+    color: var(--textDark)
+}   
+
+#themeToggle {
+    margin: 1% 3% 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+p.fileError {
+    color: #f71a1a;
+    display: none;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 3s ease-out;
+}
+
+.upload {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin-bottom: 2%;
+}
+
+span.switch {
+    color: #fff;
+}
+
+/* switch button */
+.form-switch {
+    display: inline-block;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.form-switch i {
+    position: relative;
+    display: inline-block;
+    margin-right: .5rem;
+    margin-bottom: -7%;
+    width: 46px;
+    height: 26px;
+    background-color: #e6e6e6;
+    border-radius: 23px;
+    vertical-align: text-bottom;
+    transition: all 0.3s linear;
+}
+.form-switch i::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 42px;
+    height: 22px;
+    background-color: #fff;
+    border-radius: 11px;
+    transform: translate3d(2px, 2px, 0) scale3d(1, 1, 1);
+    transition: all 0.25s linear;
+  }
+  .form-switch i::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    background-color: #fff;
+    border-radius: 11px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24);
+    transform: translate3d(2px, 2px, 0);
+    transition: all 0.2s ease-in-out;
+  }
+  .form-switch:active i::after {
+    width: 28px;
+    transform: translate3d(2px, 2px, 0);
+  }
+  .form-switch:active input:checked + i::after { transform: translate3d(16px, 2px, 0); }
+  .form-switch input { display: none; }
+  .form-switch input:checked + i { background-color: var(--buttonColor); }
+  .form-switch input:checked + i::before { transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0); }
+  .form-switch input:checked + i::after { transform: translate3d(22px, 2px, 0); }
