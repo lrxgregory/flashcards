@@ -1,4 +1,5 @@
 let checkbox = null;
+let fileErrorMessage = null;
 
 document.addEventListener("DOMContentLoaded", () => {
   let isDarkModeEnabled = localStorage.getItem("darkMode") === "true";
@@ -22,6 +23,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   checkbox.addEventListener("click", function() {
     setRTL(checkbox);
+  });
+
+  fileErrorMessage = document.querySelector("p.fileError");
+
+  document.querySelector("#submitInput").addEventListener("click", function() {
+    if (document.querySelector("#fileToUpload").files.length !== 1) {
+      fileErrorMessage.style.display = "block";
+      setTimeout(function() {
+        fileErrorMessage.classList.add("fade-out");
+      }, 1000);
+      fileErrorMessage.addEventListener("transitionend", function() {
+        fileErrorMessage.style.display = "none";
+        fileErrorMessage.classList.remove("fade-out");
+      });
+    }
   });
 });
 
