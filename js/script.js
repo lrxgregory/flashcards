@@ -27,8 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fileErrorMessage = document.querySelector("p.fileError");
 
-  document.querySelector("#submitInput").addEventListener("click", function() {
+  document.querySelector("#submitInput").addEventListener("click", function(e) {
     if (document.querySelector("#fileToUpload").files.length !== 1) {
+      e.preventDefault();
       fileErrorMessage.style.display = "block";
       setTimeout(function() {
         fileErrorMessage.classList.add("fade-out");
