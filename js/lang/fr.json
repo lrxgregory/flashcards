@@ -1,0 +1,11 @@
+{
+    "flashCardGenerator": "Générateur de flash cards",
+    "selectFile": "Sélectionnez un fichier",
+    "uploadFile": "Envoyer le fichier",
+    "downloadCSV": "Télécharger un exemple CSV",
+    "fileError": "Veuillez sélectionner un fichier CSV",
+    "printParameters": "Paramètres d'impression",
+    "rightToLeft": "De droite à gauche sur le verso",
+    "printButton": "Imprimer",
+    "printSwitch": "Imprimer les questions avant les réponses"
+}

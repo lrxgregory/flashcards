@@ -1,0 +1,11 @@
+{
+    "flashCardGenerator": "Flash cards generator",
+    "selectFile": "Select a file to upload",
+    "uploadFile": "Upload File",
+    "downloadCSV": "Download CSV Example",
+    "fileError": "Please select a CSV file",
+    "printParameters": "Print parameters",
+    "rightToLeft": "Right to left on the back",
+    "printButton": "Print",
+    "printSwitch": "Print questions first then answers"
+}

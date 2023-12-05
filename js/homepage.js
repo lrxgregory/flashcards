@@ -1,4 +1,5 @@
-let checkbox = null;
+let rtlCheckbox = null;
+let printCheckbox = null;
 let fileErrorMessage = null;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -15,14 +16,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   errorMessage();
 
-  checkbox = document.querySelector(
-    "body > div.panel.printParameters > label > input[type=checkbox]"
-  );
+  rtlCheckbox = document.querySelector("#RTLcheckbox");
+  printCheckbox = document.querySelector("#questionFirst");
 
-  setCheckbox(checkbox);
+  setCheckbox(rtlCheckbox);
+  setCheckbox(printCheckbox);
 
-  checkbox.addEventListener("click", function() {
-    setRTL(checkbox);
+  rtlCheckbox.addEventListener("click", function() {
+    setRTL(rtlCheckbox);
+  });
+  printCheckbox.addEventListener("click", function() {
+    setPrint(printCheckbox);
   });
 
   fileErrorMessage = document.querySelector("p.fileError");
@@ -40,6 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
+
+  let langSelector = document.getElementById("langSelector");
+  langSelector.addEventListener("change", changeLanguage);
 });
 
 function setCheckbox(checkbox) {
@@ -55,6 +62,14 @@ function setRTL(checkbox) {
     localStorage.setItem("RTL", "true");
   } else {
     localStorage.setItem("RTL", "false");
+  }
+}
+
+function setPrint(checkbox) {
+  if (checkbox.checked === true) {
+    localStorage.setItem("Print", "true");
+  } else {
+    localStorage.setItem("Print", "false");
   }
 }
 
@@ -80,9 +95,8 @@ function setDarkTheme() {
     document
       .querySelector("body > .panel.printParameters > h2")
       .classList.add("dark");
-    document
-      .querySelector("body > .panel.printParameters > #switch")
-      .classList.add("dark");
+    document.querySelector("#RTLswitch").classList.add("dark");
+    document.querySelector("#PrintSwitch").classList.add("dark");
   }
   document.querySelector("#sun").style.display = "none";
   document.querySelector("#moon").style.display = "block";
@@ -103,9 +117,8 @@ function setLightTheme() {
     document
       .querySelector("body > .panel.printParameters > h2")
       .classList.remove("dark");
-    document
-      .querySelector("body > .panel.printParameters > #switch")
-      .classList.remove("dark");
+    document.querySelector("#RTLswitch").classList.remove("dark");
+    document.querySelector("#PrintSwitch").classList.remove("dark");
   }
   document.querySelector("#moon").style.display = "none";
   document.querySelector("#sun").style.display = "block";
@@ -150,4 +163,41 @@ function switchRTL() {
   } else {
     document.querySelector(".flashcard-group.answer").style.direction = "rtl";
   }
+}
+
+function changeLanguage() {
+  let langSelector = document.getElementById("langSelector");
+  let selectedLanguage = langSelector.value;
+  localStorage.setItem("language", selectedLanguage);
+
+  // Chargez le fichier JSON des traductions
+  let jsonFileUrl =
+    window.location.origin + "/js/lang/" + selectedLanguage + ".json";
+  fetch(jsonFileUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Error loading JSON file: ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      updateContent(data);
+    })
+    .catch(error => {
+      console.error("Error loading JSON file:", error);
+    });
+}
+
+function updateContent(translations) {
+  document.querySelector(".panel > form > h2").innerHTML =
+    translations.flashCardGenerator;
+  document.querySelector("#labelUpload").innerHTML = translations.selectFile;
+  document.querySelector("#submitInput").value = translations.uploadFile;
+  document.querySelector(".downloadCSV > button").innerHTML =
+    translations.downloadCSV;
+  document.querySelector("p.fileError").innerHTML = translations.fileError;
+  document.querySelector(".panel.printParameters > h2").innerHTML =
+    translations.printParameters;
+  document.querySelector("#RTLswitch").innerHTML = translations.rightToLeft;
+  document.querySelector("#PrintSwitch").innerHTML = translations.printSwitch;
 }

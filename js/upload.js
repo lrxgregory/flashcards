@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   switchRTL();
+  switchPrint();
+
+  let langSelector = document.getElementById("langSelector");
+  langSelector.addEventListener("change", changeLanguage);
 });
 
 function toggleTheme() {
@@ -49,12 +53,53 @@ function setLightTheme() {
 
 function switchRTL() {
   let RTLEnabled = localStorage.getItem("RTL") === "true";
+  let flashcardAnswers = document.querySelectorAll(".flashcard-group.answer");
 
   if (!RTLEnabled) {
-    document.querySelector(".flashcard-container.answer").style.direction =
-      "ltr";
+    flashcardAnswers.forEach(function(flashcardAnswer) {
+      flashcardAnswer.style.direction = "ltr";
+    });
   } else {
-    document.querySelector(".flashcard-container.answer").style.direction =
-      "rtl";
+    flashcardAnswers.forEach(function(flashcardAnswer) {
+      flashcardAnswer.style.direction = "rtl";
+    });
   }
+}
+
+function switchPrint() {
+  let PrintEnabled = localStorage.getItem("Print") === "true";
+
+  if (!PrintEnabled) {
+    document.querySelector("#printOption1").style.display = "none";
+    document.querySelector("#printOption2").style.display = "block";
+  } else {
+    document.querySelector("#printOption1").style.display = "block";
+    document.querySelector("#printOption2").style.display = "none";
+  }
+}
+
+function changeLanguage() {
+  let langSelector = document.getElementById("langSelector");
+  let selectedLanguage = langSelector.value;
+
+  // Chargez le fichier JSON des traductions
+  let jsonFileUrl =
+    window.location.origin + "/js/lang/" + selectedLanguage + ".json";
+  fetch(jsonFileUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Error loading JSON file: ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      updateContent(data);
+    })
+    .catch(error => {
+      console.error("Error loading JSON file:", error);
+    });
+}
+
+function updateContent(translations) {
+  document.querySelector(".print-button").innerHTML = translations.printButton;
 }

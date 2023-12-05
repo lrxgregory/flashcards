@@ -39,10 +39,6 @@
     page-break-after: always;
 }
 
-.flashcard.answer {
-    display: block;
-}
-
 @media print {
     /* CSS pour afficher les réponses sur la deuxième page lors de l'impression */
     .flashcard.answer {
@@ -161,15 +157,8 @@ body.dark {
     background-color: var(--formDark)
 }
 
-h2.dark, #switch.dark {
+h2.dark, .switch.dark {
     color: var(--textDark)
-}   
-
-#themeToggle {
-    margin: 1% 3% 0 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
 }
 
 .fileError {
@@ -191,7 +180,7 @@ h2.dark, #switch.dark {
 }
 
 span.switch {
-    color: #fff;
+    color: #000;
 }
 
 /* switch button */
@@ -244,3 +233,38 @@ span.switch {
 .form-switch input:checked + i { background-color: var(--buttonColor); }
 .form-switch input:checked + i::before { transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0); }
 .form-switch input:checked + i::after { transform: translate3d(22px, 2px, 0); }
+
+.banner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin: 1% 3% 0% 3%;
+}
+
+#langSelector {
+    background-color: var(--buttonColor);
+    color: #fff;
+    padding: 3px 3px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.parameter {
+    display: flex;
+    flex-direction: column;
+}
+
+.switch-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+
+.switch {
+    color: #fff;
+    margin-right: 10px;
+}
