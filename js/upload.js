@@ -103,7 +103,8 @@ function changeLanguage() {
 }
 
 function updateContent(translations) {
-  document.querySelector(".print-button").innerHTML = translations.printButton;
+  document.querySelector(".settings-button.print").innerHTML =
+    translations.printButton;
 }
 
 function updateCardNumber(cardNumber) {
