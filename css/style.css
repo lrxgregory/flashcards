@@ -291,6 +291,7 @@ h2.dark, .switch.dark {
     align-items: center;
     margin-bottom: 10px;
     justify-content: space-between;
+    text-align: left;
 }
 
 .switch {
