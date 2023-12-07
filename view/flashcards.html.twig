@@ -48,11 +48,16 @@
 		</span>
 	</div>
 	<div>
-		<button class="print-button" onclick="window.print()">Print</button>
+
+		<div class="settings">
+			<button class="settings-button" onclick="window.print()">Print</button>
+		</div>
+
 
 		<div id="printOption1">
 			<div class="flashcard-container question">
 				{% set count = 0 %}
+				{# {% set cardNumber = 12 %} #}
 
 				<div class="flashcard-group question">
 					{% for flashcard in flashcards %}
@@ -62,7 +67,7 @@
 								{{ flashcard.question }}
 							</div>
 						</div>
-						{% if count % 50 == 0 %}
+						{% if count % cardNumber == 0 %}
 						</div>
 						{% if not loop.last %}
 							<div class="flashcard-group question">
@@ -84,7 +89,7 @@
 								{{ flashcard.answer }}
 							</div>
 						</div>
-						{% if count % 50 == 0 %}
+						{% if count % cardNumber == 0 %}
 						</div>
 						{% if not loop.last %}
 							<div class="flashcard-group answer">
@@ -107,12 +112,12 @@
 						</div>
 					</div>
 
-					{% if count % 50 == 0 %}
+					{% if count % cardNumber == 0 %}
 					</div>
 					{# Fermeture du groupe de questions #}
 					<div class="flashcard-group answer">
-						{% for i in range(count - 50, count -1) %}
-							{# Boucle pour afficher les 50 réponses correspondant aux 50 questions précédentes #}
+						{% for i in range(count - cardNumber, count -1) %}
+							{# Boucle pour afficher les cardNumber réponses correspondant aux cardNumber questions précédentes #}
 							<div class="flashcard answer">
 								<div class="answer">
 									{{ flashcards[i].answer }}

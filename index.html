@@ -74,6 +74,7 @@
                 <label for="fileToUpload" id="labelUpload">Select file to upload</label>
                 <input type="file" name="fileToUpload" id="fileToUpload">
                 <br>
+                <input type="hidden" name="cardNumber" id="cardNumberHidden">
                 <input type="submit" name="submit" value="Upload File" id="submitInput">
             </div>
 
@@ -101,6 +102,16 @@
                     <input type="checkbox" id="questionFirst" name="questionFirst">
                     <i></i>
                 </label>
+            </div>
+            <div class="switch-group">
+                <label class="switch" for="cardNumber">Card number</label>
+                <select id="cardNumber" class="settings-button">
+                    <option value="12">12</option>
+                    <option value="20">20</option>
+                    <option value="32">32</option>
+                    <option value="40">40</option>
+                    <option value="52">52</option>
+                </select>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 let checkbox = null;
-
+let cardNumber = null;
 document.addEventListener("DOMContentLoaded", () => {
   let isDarkModeEnabled = localStorage.getItem("darkMode") === "true";
   if (isDarkModeEnabled) {
@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleTheme();
   });
 
+  cardNumber = localStorage.getItem("cardNumber");
+  updateCardNumber(cardNumber);
   switchRTL();
   switchPrint();
 
@@ -102,4 +104,17 @@ function changeLanguage() {
 
 function updateContent(translations) {
   document.querySelector(".print-button").innerHTML = translations.printButton;
+}
+
+function updateCardNumber(cardNumber) {
+  let flashcardGroups = document.querySelectorAll(".flashcard-group");
+  if (cardNumber == 12) {
+    flashcardGroups.forEach(function(flashcardGroup) {
+      flashcardGroup.style.gridTemplateColumns = `repeat(3, 1fr)`;
+    });
+  } else {
+    flashcardGroups.forEach(function(flashcardGroup) {
+      flashcardGroup.style.gridTemplateColumns = `repeat(4, 1fr)`;
+    });
+  }
 }

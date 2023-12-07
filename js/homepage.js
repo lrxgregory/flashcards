@@ -1,6 +1,7 @@
 let rtlCheckbox = null;
 let printCheckbox = null;
 let fileErrorMessage = null;
+let cardNumber = null;
 
 document.addEventListener("DOMContentLoaded", () => {
   let isDarkModeEnabled = localStorage.getItem("darkMode") === "true";
@@ -43,10 +44,18 @@ document.addEventListener("DOMContentLoaded", () => {
         fileErrorMessage.classList.remove("fade-out");
       });
     }
+    let cardNumber = document.querySelector("#cardNumber").value;
+    updateCardNumber(cardNumber);
   });
 
   let langSelector = document.getElementById("langSelector");
   langSelector.addEventListener("change", changeLanguage);
+
+  if (localStorage.getItem("cardNumber") !== null) {
+    document.querySelector("#cardNumber").value = localStorage.getItem(
+      "cardNumber"
+    );
+  }
 });
 
 function setCheckbox(checkbox) {
@@ -200,4 +209,9 @@ function updateContent(translations) {
     translations.printParameters;
   document.querySelector("#RTLswitch").innerHTML = translations.rightToLeft;
   document.querySelector("#PrintSwitch").innerHTML = translations.printSwitch;
+}
+
+function updateCardNumber(cardNumber) {
+  document.querySelector("#cardNumberHidden").value = cardNumber;
+  localStorage.setItem("cardNumber", cardNumber);
 }
