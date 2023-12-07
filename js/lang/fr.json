@@ -7,5 +7,6 @@
     "printParameters": "Paramètres d'impression",
     "rightToLeft": "De droite à gauche sur le verso",
     "printButton": "Imprimer",
-    "printSwitch": "Imprimer les questions avant les réponses"
+    "printSwitch": "Imprimer les questions avant les réponses",
+    "cardNumber": "Nombre de cartes"
 }

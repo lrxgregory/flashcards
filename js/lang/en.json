@@ -7,5 +7,6 @@
     "printParameters": "Print parameters",
     "rightToLeft": "Right to left on the back",
     "printButton": "Print",
-    "printSwitch": "Print questions first then answers"
+    "printSwitch": "Print questions first then answers",
+    "cardNumber": "Cards Number"
 }

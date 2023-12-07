@@ -7,5 +7,6 @@
     "printParameters": "Parámetros de impresión",
     "rightToLeft": "De derecha a izquierda en la parte posterior",
     "printButton": "Imprimir",
-    "printSwitch": "Imprimir primero las preguntas y luego las respuestas"
+    "printSwitch": "Imprimir primero las preguntas y luego las respuestas",
+    "cardNumber": "Número de tarjetas"
 }

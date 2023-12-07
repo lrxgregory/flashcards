@@ -211,6 +211,8 @@ function updateContent(translations) {
     translations.printParameters;
   document.querySelector("#RTLswitch").innerHTML = translations.rightToLeft;
   document.querySelector("#PrintSwitch").innerHTML = translations.printSwitch;
+  document.querySelector('label[for="cardNumber"]').innerHTML =
+    translations.cardNumber;
 }
 
 function updateCardNumber(cardNumber) {
