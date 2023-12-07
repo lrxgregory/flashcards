@@ -106,6 +106,7 @@ function setDarkTheme() {
       .classList.add("dark");
     document.querySelector("#RTLswitch").classList.add("dark");
     document.querySelector("#PrintSwitch").classList.add("dark");
+    document.querySelector('label[for="cardNumber"]').classList.add("dark");
   }
   document.querySelector("#sun").style.display = "none";
   document.querySelector("#moon").style.display = "block";
@@ -128,6 +129,7 @@ function setLightTheme() {
       .classList.remove("dark");
     document.querySelector("#RTLswitch").classList.remove("dark");
     document.querySelector("#PrintSwitch").classList.remove("dark");
+    document.querySelector('label[for="cardNumber"]').classList.remove("dark");
   }
   document.querySelector("#moon").style.display = "none";
   document.querySelector("#sun").style.display = "block";
