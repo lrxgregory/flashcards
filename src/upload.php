@@ -13,6 +13,8 @@ session_set_cookie_params([
 session_start();
 session_regenerate_id(true);
 
+$cardNumber = $_POST['cardNumber'];
+
 $flashcards = [];
 
 if (isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['error'] === UPLOAD_ERR_OK) {
@@ -75,4 +77,4 @@ if (($handle = fopen($uploadFile, 'r')) !== false) {
 $loader = new \Twig\Loader\FilesystemLoader('../view');
 $twig = new \Twig\Environment($loader);
 
-echo $twig->render('flashcards.html.twig', ['flashcards' => $flashcards]);
+echo $twig->render('flashcards.html.twig', ['flashcards' => $flashcards, 'cardNumber' => $cardNumber]);

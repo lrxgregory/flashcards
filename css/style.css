@@ -6,27 +6,78 @@
     --textDark: #fff;
 }
 
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin: 0;
+}
+
+body.dark {
+    background-color: var(--bodyDark);
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .flashcard-group {
     display: grid;
-    grid-template-columns: repeat(5, 0fr);
-    max-width: 861px;
-    margin: 0 auto;
-    margin-bottom: 2%;
+    grid-template-columns: repeat(3, 1fr);
+    width: 90%;
+    height: 100vh;
+    margin: 3% auto;
+    box-sizing: border-box;
+    page-break-inside: avoid;
+    page-break-after: always;
 }
-    
+
 .flashcard {
-    width: 150px;
-    height: 99.5px;
+    width: 100%;
+    height: 100%;
     background-color: #fff;
-    border: 1px solid #ccc;     
+    border: 1px solid #ccc;
+    box-sizing: border-box;
     padding: 10px;
     text-align: center;
     font-family: Arial, sans-serif;
-    font-size: 16px;
+    font-size: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+@media print {
+    .flashcard {
+        height: 100%;
+    }
+
+    .flashcard-group {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+        page-break-inside: avoid;
+        margin: 0;
+    }
+
+    .flashcard.answer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .settings-button, div.banner {
+        display: none;
+    }
 }
 
 @page {
@@ -35,33 +86,7 @@
     padding: 0;
 }
 
-.flashcard-group {
-    page-break-after: always;
-}
-
-.flashcard.answer {
-    display: block;
-}
-
-@media print {
-    /* CSS pour afficher les réponses sur la deuxième page lors de l'impression */
-    .flashcard.answer {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-size: 16px;
-    }
-}
-
 /* Form */
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    text-align: center;
-    margin:0;
-}
 
 div.center {
     display: flex;
@@ -78,7 +103,7 @@ div.center {
     margin: 2% auto;
 }
 
-h2,  {
+h2 {
     color: #333;
 }
 
@@ -86,7 +111,7 @@ input[type="file"] {
     display: none;
 }
 
-label#labelUpload {
+#labelUpload {
     background-color: var(--buttonColor);
     color: #fff;
     padding: 10px 10px;
@@ -94,10 +119,11 @@ label#labelUpload {
     cursor: pointer;
     transition: background-color 0.3s;
     display: inline-block;
-    margin-right: 2%
+    margin-right: 2%;
+    font-size: 16px;
 }
 
-label#labelUpload:hover {
+#labelUpload:hover {
     background-color: var(--buttonColorHover);
 }
 
@@ -112,7 +138,7 @@ input[type="submit"] {
     font-size: 16px;
 }
 
-button  {
+button {
     background-color: var(--buttonColor);
     color: #fff;
     padding: 10px 10px;
@@ -130,7 +156,7 @@ input[type="submit"]:hover {
 
 /* Print button */
 
-.print-button {
+.settings-button {
     background-color: var(--buttonColor);
     color: #fff;
     padding: 10px 15px;
@@ -142,36 +168,23 @@ input[type="submit"]:hover {
     font-size: 16px;
 }
 
-.print-button:hover {
+.settings-button:hover {
     background-color: var(--buttonColorHover);
 }
 
-@media print {
-    .print-button, span#themeToggle {
-        display: none;
-    }
-}
-
-body.dark {
-    background-color: var(--bodyDark)
+#cardNumber {
+    padding: 4px 7px;
 }
 
 .panel.dark, .panel.printParameters.dark, form.dark {
-    background-color: var(--formDark)
+    background-color: var(--formDark);
 }
 
-h2.dark, #switch.dark {
-    color: var(--textDark)
-}   
-
-#themeToggle {
-    margin: 1% 3% 0 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+h2.dark, .switch.dark {
+    color: var(--textDark);
 }
 
-p.fileError {
+.fileError {
     color: #f71a1a;
     display: none;
 }
@@ -187,10 +200,6 @@ p.fileError {
     flex-wrap: nowrap;
     justify-content: center;
     margin-bottom: 2%;
-}
-
-span.switch {
-    color: #fff;
 }
 
 /* switch button */
@@ -221,8 +230,8 @@ span.switch {
     border-radius: 11px;
     transform: translate3d(2px, 2px, 0) scale3d(1, 1, 1);
     transition: all 0.25s linear;
-  }
-  .form-switch i::after {
+}
+.form-switch i::after {
     content: "";
     position: absolute;
     left: 0;
@@ -233,13 +242,82 @@ span.switch {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24);
     transform: translate3d(2px, 2px, 0);
     transition: all 0.2s ease-in-out;
-  }
-  .form-switch:active i::after {
+}
+.form-switch:active i::after {
     width: 28px;
     transform: translate3d(2px, 2px, 0);
-  }
-  .form-switch:active input:checked + i::after { transform: translate3d(16px, 2px, 0); }
-  .form-switch input { display: none; }
-  .form-switch input:checked + i { background-color: var(--buttonColor); }
-  .form-switch input:checked + i::before { transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0); }
-  .form-switch input:checked + i::after { transform: translate3d(22px, 2px, 0); }
+}
+.form-switch:active input:checked + i::after {
+    transform: translate3d(16px, 2px, 0);
+}
+.form-switch input {
+    display: none;
+}
+.form-switch input:checked + i {
+    background-color: var(--buttonColor);
+}
+.form-switch input:checked + i::before {
+    transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0);
+}
+.form-switch input:checked + i::after {
+    transform: translate3d(22px, 2px, 0);
+}
+
+.banner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin: 1% 3% 0% 3%;
+}
+
+#langSelector {
+    background-color: var(--buttonColor);
+    color: #fff;
+    padding: 3px 3px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.parameter {
+    display: flex;
+    flex-direction: column;
+}
+
+.switch-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.switch {
+    color: #000;
+}
+
+@media only screen and (max-width: 400px) {
+    .panel, .banner {
+        margin: 5% 5%;
+    }
+}
+
+@media only screen and (min-width: 401px) and (max-width: 1024px) {
+    .banner {
+        margin-top: 2%;
+    }
+}
+
+.settings {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+}
+
+#cardNumber {
+    margin-right: 1%;
+}

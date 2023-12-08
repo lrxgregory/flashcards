@@ -1,0 +1,12 @@
+{
+    "flashCardGenerator": "Generador de tarjetas flash",
+    "selectFile": "Seleccionar archivo para subir",
+    "uploadFile": "Subir archivo",
+    "downloadCSV": "Descargar ejemplo CSV",
+    "fileError": "Por favor, selecciona un archivo CSV",
+    "printParameters": "Parámetros de impresión",
+    "rightToLeft": "De derecha a izquierda en la parte posterior",
+    "printButton": "Imprimir",
+    "printSwitch": "Imprimir primero las preguntas y luego las respuestas",
+    "cardNumber": "Número de tarjetas"
+}

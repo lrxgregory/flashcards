@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Flashcards</title>
+		<title>Flashcards Generator - Create and Print Flashcards</title>
+		<meta name="description" content="Generate and print flashcards easily with our Flashcards Generator. Create questions and answers for effective learning.">
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 		<script src="../js/upload.js"></script>
 	</head>
-	<div>
+	<div class="banner">
+		<select id="langSelector">
+			<option value="en">English</option>
+			<option value="fr">Français</option>
+			<option value="es">Español</option>
+		</select>
 		<span id="themeToggle">
 			<svg id="sun" width="20px" height="20px" viewbox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
 				<g id="Lager_93" data-name="Lager 93" transform="translate(2 2)">
@@ -40,14 +46,64 @@
 				</g>
 			</svg>
 		</span>
+	</div>
+	<div>
 
-		<button class="print-button" onclick="window.print()">Print</button>
+		<div class="settings">
+			<button class="settings-button print" onclick="window.print()">Print</button>
+		</div>
 
-		<!-- Boucle distincte pour générer les cartes de réponse -->
-		<div class="flashcard-container question">
+
+		<div id="printOption1">
+			<div class="flashcard-container question">
+				{% set count = 0 %}
+				{# {% set cardNumber = 12 %} #}
+
+				<div class="flashcard-group question">
+					{% for flashcard in flashcards %}
+						{% set count = count + 1 %}
+						<div class="flashcard question">
+							<div class="question">
+								{{ flashcard.question }}
+							</div>
+						</div>
+						{% if count % cardNumber == 0 %}
+						</div>
+						{% if not loop.last %}
+							<div class="flashcard-group question">
+							{% endif %}
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+
+			<!-- Boucle distincte pour générer les cartes de réponse -->
+			<div class="flashcard-container answer">
+				{% set count = 0 %}
+
+				<div class="flashcard-group answer">
+					{% for flashcard in flashcards %}
+						{% set count = count + 1 %}
+						<div class="flashcard answer">
+							<div class="answer">
+								{{ flashcard.answer }}
+							</div>
+						</div>
+						{% if count % cardNumber == 0 %}
+						</div>
+						{% if not loop.last %}
+							<div class="flashcard-group answer">
+							{% endif %}
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+
+		<div id="printOption2">
 			{% set count = 0 %}
 
-			<div class="flashcard-group question {{ count }}">
+			<div class="flashcard-group question">
 				{% for flashcard in flashcards %}
 					{% set count = count + 1 %}
 					<div class="flashcard question">
@@ -55,33 +111,23 @@
 							{{ flashcard.question }}
 						</div>
 					</div>
-					{% if count % 50 == 0 %}
-					</div>
-					{% if not loop.last %}
-						<div class="flashcard-group question {{ count }}">
-						{% endif %}
-					{% endif %}
-				{% endfor %}
-			</div>
-		</div>
 
-		<!-- Boucle distincte pour générer les cartes de réponse -->
-		<div class="flashcard-container answer">
-			{% set count = 0 %}
-
-			<div class="flashcard-group answer {{ count }}">
-				{% for flashcard in flashcards %}
-					{% set count = count + 1 %}
-					<div class="flashcard answer">
-						<div class="answer">
-							{{ flashcard.answer }}
-						</div>
+					{% if count % cardNumber == 0 %}
 					</div>
-					{% if count % 50 == 0 %}
+					{# Fermeture du groupe de questions #}
+					<div class="flashcard-group answer">
+						{% for i in range(count - cardNumber, count -1) %}
+							{# Boucle pour afficher les cardNumber réponses correspondant aux cardNumber questions précédentes #}
+							<div class="flashcard answer">
+								<div class="answer">
+									{{ flashcards[i].answer }}
+								</div>
+							</div>
+						{% endfor %}
 					</div>
-					{% if not loop.last %}
-						<div class="flashcard-group answer {{ count }}">
-						{% endif %}
+					<div
+						class="flashcard-group question">
+					{# Ouverture d'un nouveau groupe de questions #}
 					{% endif %}
 				{% endfor %}
 			</div>
