@@ -34,7 +34,6 @@ body {
     margin: 3% auto;
     box-sizing: border-box;
     page-break-inside: avoid;
-    page-break-after: always;
 }
 
 .flashcard {
@@ -51,33 +50,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-@media print {
-    .flashcard {
-        height: 100%;
-    }
-
-    .flashcard-group {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        width: 100vw;
-        height: 100vh;
-        box-sizing: border-box;
-        page-break-inside: avoid;
-        margin: 0;
-    }
-
-    .flashcard.answer {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .settings-button, div.banner {
-        display: none;
-    }
 }
 
 @page {
@@ -320,4 +292,38 @@ h2.dark, .switch.dark {
 
 #cardNumber {
     margin-right: 1%;
+}
+#printOption1, #printOption2 {
+    padding-bottom: 1%;
+}
+
+@media print {
+    .flashcard {
+        height: 100%;
+    }
+
+    .flashcard-group {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+        page-break-inside: avoid;
+        margin: 0;
+    }
+
+    .flashcard.answer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .settings-button, div.banner {
+        display: none;
+    }
+
+    #printOption1, #printOption2 {
+        padding: 0;
+    }
 }
