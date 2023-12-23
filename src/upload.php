@@ -74,7 +74,18 @@ if (($handle = fopen($uploadFile, 'r')) !== false) {
     error_log('Unable to open CSV file for reading.');
 }
 
+$flashcardsNumber = count($flashcards);
+$numberOfEmptyArrays = $cardNumber - ($flashcardsNumber % $cardNumber) % $cardNumber;
+if ($numberOfEmptyArrays > 0) {
+    for ($i = 0; $i < $numberOfEmptyArrays; $i++) {
+        $flashcards[] = [
+            'question' => '',
+            'answer' => '',
+        ];
+    }
+}
+
 $loader = new \Twig\Loader\FilesystemLoader('../view');
 $twig = new \Twig\Environment($loader);
 
-echo $twig->render('flashcards.html.twig', ['flashcards' => $flashcards, 'cardNumber' => $cardNumber]);
+echo $twig->render('flashcards.html.twig', ['flashcards' => $flashcards, 'cardNumber' => $cardNumber, 'flashcardsNumber' => $flashcardsNumber]);

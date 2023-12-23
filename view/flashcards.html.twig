@@ -125,9 +125,11 @@
 							</div>
 						{% endfor %}
 					</div>
-					<div
-						class="flashcard-group question">
-					{# Ouverture d'un nouveau groupe de questions #}
+					{% if count < flashcardsNumber %}
+						<div
+							class="flashcard-group question">
+						{# Ouverture d'un nouveau groupe de questions #}
+						{% endif %}
 					{% endif %}
 				{% endfor %}
 			</div>
