@@ -34,7 +34,6 @@ body {
     margin: 3% auto;
     box-sizing: border-box;
     page-break-inside: avoid;
-    page-break-after: always;
 }
 
 .flashcard {
